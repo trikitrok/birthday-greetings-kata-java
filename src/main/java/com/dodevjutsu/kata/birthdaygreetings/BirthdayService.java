@@ -36,19 +36,7 @@ public class BirthdayService {
     }
 
     private List<Employee> getEmployeesHavingBirthdayOn(String fileName, OurDate ourDate) throws IOException, ParseException {
-        BufferedReader in = new BufferedReader(new FileReader(fileName));
-        String str = "";
-        str = in.readLine(); // skip header
-        List<Employee> birthdayEmployees = new ArrayList();
-        while ((str = in.readLine()) != null) {
-            String[] employeeData = str.split(", ");
-            Employee employee = new Employee(employeeData[1], employeeData[0],
-                    employeeData[2], employeeData[3]);
-            if (employee.isBirthday(ourDate)) {
-                birthdayEmployees.add(employee);
-            }
-        }
-        return birthdayEmployees;
+        return new FileEmployeeRepository(fileName).whoseBirthdayIsOn(ourDate);
     }
 
     private void sendMessage(String smtpHost, int smtpPort, String sender,
