@@ -20,6 +20,18 @@ public class BirthdayService {
     public void sendGreetings(String fileName, OurDate ourDate,
             String smtpHost, int smtpPort) throws IOException, ParseException,
             AddressException, MessagingException {
+        List<Employee> birthdayEmployees = getEmployeesHavingBirthdayOn(fileName, ourDate);
+        for (Employee employee : birthdayEmployees) {
+                String recipient = employee.getEmail();
+                String body = "Happy Birthday, dear %NAME%!".replace("%NAME%",
+                        employee.getFirstName());
+                String subject = "Happy Birthday!";
+                sendMessage(smtpHost, smtpPort, "sender@here.com", subject,
+                        body, recipient);
+        }
+    }
+
+    private List<Employee> getEmployeesHavingBirthdayOn(String fileName, OurDate ourDate) throws IOException, ParseException {
         BufferedReader in = new BufferedReader(new FileReader(fileName));
         String str = "";
         str = in.readLine(); // skip header
@@ -32,14 +44,7 @@ public class BirthdayService {
                 birthdayEmployees.add(employee);
             }
         }
-        for (Employee employee : birthdayEmployees) {
-                String recipient = employee.getEmail();
-                String body = "Happy Birthday, dear %NAME%!".replace("%NAME%",
-                        employee.getFirstName());
-                String subject = "Happy Birthday!";
-                sendMessage(smtpHost, smtpPort, "sender@here.com", subject,
-                        body, recipient);
-        }
+        return birthdayEmployees;
     }
 
     private void sendMessage(String smtpHost, int smtpPort, String sender,
