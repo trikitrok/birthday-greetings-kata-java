@@ -1,4 +1,4 @@
-package test;
+package com.dodevjutsu.kata.birthdaygreetings.test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.List;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 
-import main.BirthdayService;
-import main.OurDate;
+import com.dodevjutsu.kata.birthdaygreetings.BirthdayService;
+import com.dodevjutsu.kata.birthdaygreetings.OurDate;
 
 import org.junit.Before;
 import org.junit.Test;

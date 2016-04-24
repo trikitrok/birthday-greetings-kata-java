@@ -1,8 +1,8 @@
-package test;
+package com.dodevjutsu.kata.birthdaygreetings.test;
 
 import static org.junit.Assert.*;
 
-import main.OurDate;
+import com.dodevjutsu.kata.birthdaygreetings.OurDate;
 
 import org.junit.Test;
 

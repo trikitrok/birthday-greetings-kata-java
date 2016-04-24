@@ -1,4 +1,4 @@
-package main;
+package com.dodevjutsu.kata.birthdaygreetings;
 
 import java.text.ParseException;
 
