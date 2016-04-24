@@ -1,12 +1,5 @@
 package com.dodevjutsu.kata.birthdaygreetings;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -14,12 +7,12 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.util.List;
 
 public class BirthdayService {
 
     public void sendGreetings(String fileName, OurDate ourDate,
-            String smtpHost, int smtpPort) throws IOException, ParseException,
-            AddressException, MessagingException {
+            String smtpHost, int smtpPort) throws AddressException, MessagingException {
         List<Employee> birthdayEmployees = getEmployeesHavingBirthdayOn(fileName, ourDate);
         sendGreetingsTo(smtpHost, smtpPort, birthdayEmployees);
     }
@@ -35,7 +28,7 @@ public class BirthdayService {
         }
     }
 
-    private List<Employee> getEmployeesHavingBirthdayOn(String fileName, OurDate ourDate) throws IOException, ParseException {
+    private List<Employee> getEmployeesHavingBirthdayOn(String fileName, OurDate ourDate) {
         return new FileEmployeeRepository(fileName).whoseBirthdayIsOn(ourDate);
     }
 
