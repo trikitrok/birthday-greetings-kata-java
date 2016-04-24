@@ -21,6 +21,10 @@ public class BirthdayService {
             String smtpHost, int smtpPort) throws IOException, ParseException,
             AddressException, MessagingException {
         List<Employee> birthdayEmployees = getEmployeesHavingBirthdayOn(fileName, ourDate);
+        sendGreetingsTo(smtpHost, smtpPort, birthdayEmployees);
+    }
+
+    private void sendGreetingsTo(String smtpHost, int smtpPort, List<Employee> birthdayEmployees) throws MessagingException {
         for (Employee employee : birthdayEmployees) {
                 String recipient = employee.getEmail();
                 String body = "Happy Birthday, dear %NAME%!".replace("%NAME%",
