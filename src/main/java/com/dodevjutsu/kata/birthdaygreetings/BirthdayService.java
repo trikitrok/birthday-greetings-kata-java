@@ -23,16 +23,16 @@ public class BirthdayService {
         BufferedReader in = new BufferedReader(new FileReader(fileName));
         String str = "";
         str = in.readLine(); // skip header
-        List<Employee> employees = new ArrayList();
+        List<Employee> birthdayEmployees = new ArrayList();
         while ((str = in.readLine()) != null) {
             String[] employeeData = str.split(", ");
             Employee employee = new Employee(employeeData[1], employeeData[0],
                     employeeData[2], employeeData[3]);
             if (employee.isBirthday(ourDate)) {
-                employees.add(employee);
+                birthdayEmployees.add(employee);
             }
         }
-        for (Employee employee : employees) {
+        for (Employee employee : birthdayEmployees) {
                 String recipient = employee.getEmail();
                 String body = "Happy Birthday, dear %NAME%!".replace("%NAME%",
                         employee.getFirstName());
