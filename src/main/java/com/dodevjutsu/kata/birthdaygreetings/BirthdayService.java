@@ -28,17 +28,17 @@ public class BirthdayService {
             String[] employeeData = str.split(", ");
             Employee employee = new Employee(employeeData[1], employeeData[0],
                     employeeData[2], employeeData[3]);
-            employees.add(employee);
+            if (employee.isBirthday(ourDate)) {
+                employees.add(employee);
+            }
         }
         for (Employee employee : employees) {
-            if (employee.isBirthday(ourDate)) {
                 String recipient = employee.getEmail();
                 String body = "Happy Birthday, dear %NAME%!".replace("%NAME%",
                         employee.getFirstName());
                 String subject = "Happy Birthday!";
                 sendMessage(smtpHost, smtpPort, "sender@here.com", subject,
                         body, recipient);
-            }
         }
     }
 
