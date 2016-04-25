@@ -36,7 +36,7 @@ public class EmailGreetingsService implements GreetingsService {
 
     private void sendMessage(String smtpHost, int smtpPort, String sender,
                              String subject, String body, String recipient)
-            throws AddressException, MessagingException {
+            throws MessagingException {
         // Create a mail session
         java.util.Properties props = new java.util.Properties();
         props.put("mail.smtp.host", smtpHost);
