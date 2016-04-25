@@ -23,7 +23,7 @@ public class AcceptanceTest {
 
     @Before
     public void setUp() throws Exception {
-        messagesSent = new ArrayList<Message>();
+        messagesSent = new ArrayList<>();
 
         service = new BirthdayService(new FileEmployeeRepository("src/test/resources/employee_data.txt"),
                 new EmailGreetingsService(smtpHost, SMTP_PORT) {
