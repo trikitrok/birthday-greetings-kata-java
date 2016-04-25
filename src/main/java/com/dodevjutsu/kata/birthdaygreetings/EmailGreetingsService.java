@@ -27,7 +27,7 @@ public class EmailGreetingsService implements GreetingsService {
                 String body = "Happy Birthday, dear %NAME%!".replace("%NAME%",
                         employee.getFirstName());
                 String subject = "Happy Birthday!";
-                sendMessage(smtpHost, smtpPort, "sender@here.com", subject,
+                sendMessage("sender@here.com", subject,
                         body, recipient);
             }
         } catch (MessagingException exception) {
@@ -35,7 +35,7 @@ public class EmailGreetingsService implements GreetingsService {
         }
     }
 
-    private void sendMessage(String smtpHost, int smtpPort, String sender,
+    private void sendMessage(String sender,
                              String subject, String body, String recipient)
             throws MessagingException {
 
