@@ -16,12 +16,16 @@ public class MyFileReader {
 
     public Iterator<String> skipHeader() throws IOException {
         Iterator<String> iterator = readFile();
-        iterator.next();
+        skipHeader(iterator);
         return iterator;
     }
 
     private Iterator<String> readFile() throws IOException {
         List<String> lines = Files.readAllLines(path);
         return lines.iterator();
+    }
+
+    private void skipHeader(Iterator<String> iterator) {
+        iterator.next();
     }
 }
