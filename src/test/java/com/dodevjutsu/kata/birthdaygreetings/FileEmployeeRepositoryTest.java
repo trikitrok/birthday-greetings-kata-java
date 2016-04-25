@@ -2,6 +2,7 @@ package com.dodevjutsu.kata.birthdaygreetings;
 
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.core.StringContains;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -14,6 +15,12 @@ public class FileEmployeeRepositoryTest {
 
     @Rule
     public ExpectedException expected = ExpectedException.none();
+    private OurDate ANY_DATE;
+
+    @Before
+    public void setUp() throws Exception {
+        ANY_DATE = new OurDate("2016/01/01");
+    }
 
     @Test
     public void fails_when_the_file_does_not_exist() throws Exception {
@@ -23,7 +30,7 @@ public class FileEmployeeRepositoryTest {
         expected.expectMessage(containsString("cannot read file"));
         expected.expectMessage(containsString("non-existing.file"));
 
-        service.whoseBirthdayIsOn(new OurDate("2016/01/01"));
+        service.whoseBirthdayIsOn(ANY_DATE);
     }
 
     @Test
@@ -33,7 +40,7 @@ public class FileEmployeeRepositoryTest {
         expected.expect(CannotReadEmployeesException.class);
         expected.expectMessage(containsString("cannot parse employee"));
 
-        service.whoseBirthdayIsOn(new OurDate("2016/01/01"));
+        service.whoseBirthdayIsOn(ANY_DATE);
     }
 
 }
