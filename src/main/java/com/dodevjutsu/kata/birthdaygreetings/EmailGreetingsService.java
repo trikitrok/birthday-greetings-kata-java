@@ -23,19 +23,12 @@ public class EmailGreetingsService implements GreetingsService {
                 String body = "Happy Birthday, dear %NAME%!".replace("%NAME%",
                         employee.getFirstName());
                 String subject = "Happy Birthday!";
-                sendMessage("sender@here.com", subject, body, recipient);
+                Message message = buildMessage("sender@here.com", subject, body, recipient);
+                sendMessage(message);
             }
         } catch (MessagingException exception) {
             throw new CannotSendGreetingsException("failed sending emails", exception);
         }
-    }
-
-    private void sendMessage(String sender, String subject, String body, String recipient)
-            throws MessagingException {
-
-        Message msg = buildMessage(sender, subject, body, recipient);
-
-        sendMessage(msg);
     }
 
     private Message buildMessage(String sender, String subject, String body, String recipient) throws MessagingException {
