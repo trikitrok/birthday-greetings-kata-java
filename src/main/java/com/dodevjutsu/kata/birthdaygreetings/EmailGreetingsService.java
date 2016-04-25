@@ -34,8 +34,7 @@ public class EmailGreetingsService implements GreetingsService {
     private Message buildMessage(String sender, String subject, String body, String recipient) throws MessagingException {
         Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress(sender));
-        message.setRecipient(Message.RecipientType.TO, new InternetAddress(
-                recipient));
+        message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
         message.setSubject(subject);
         message.setText(body);
         return message;
