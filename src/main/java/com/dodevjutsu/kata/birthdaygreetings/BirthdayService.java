@@ -19,7 +19,7 @@ public class BirthdayService {
 
     public void sendGreetings(String fileName, OurDate ourDate,
                               String smtpHost, int smtpPort) throws AddressException, MessagingException {
-        List<Employee> birthdayEmployees = getEmployeesHavingBirthdayOn(fileName, ourDate);
+        List<Employee> birthdayEmployees = getEmployeesHavingBirthdayOn(ourDate);
         sendGreetingsTo(smtpHost, smtpPort, birthdayEmployees);
     }
 
@@ -34,7 +34,7 @@ public class BirthdayService {
         }
     }
 
-    private List<Employee> getEmployeesHavingBirthdayOn(String fileName, OurDate ourDate) {
+    private List<Employee> getEmployeesHavingBirthdayOn(OurDate ourDate) {
         return employeeRepository.whoseBirthdayIsOn(ourDate);
     }
 
