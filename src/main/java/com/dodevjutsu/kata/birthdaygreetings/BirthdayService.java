@@ -11,8 +11,10 @@ import java.util.List;
 
 public class BirthdayService {
 
+    private EmployeeRepository employeeRepository;
+
     public void sendGreetings(String fileName, OurDate ourDate,
-            String smtpHost, int smtpPort) throws AddressException, MessagingException {
+                              String smtpHost, int smtpPort) throws AddressException, MessagingException {
         List<Employee> birthdayEmployees = getEmployeesHavingBirthdayOn(fileName, ourDate);
         sendGreetingsTo(smtpHost, smtpPort, birthdayEmployees);
     }
@@ -29,7 +31,8 @@ public class BirthdayService {
     }
 
     private List<Employee> getEmployeesHavingBirthdayOn(String fileName, OurDate ourDate) {
-        return new FileEmployeeRepository(fileName).whoseBirthdayIsOn(ourDate);
+        employeeRepository = new FileEmployeeRepository(fileName);
+        return employeeRepository.whoseBirthdayIsOn(ourDate);
     }
 
     private void sendMessage(String smtpHost, int smtpPort, String sender,
