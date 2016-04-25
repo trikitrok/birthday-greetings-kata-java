@@ -42,7 +42,7 @@ public class EmailGreetingsService implements GreetingsService {
     private Session obtainSession(String smtpHost, int smtpPort) {
         java.util.Properties props = new java.util.Properties();
         props.put("mail.smtp.host", smtpHost);
-        props.put("mail.smtp.port", "" + smtpPort);
+        props.put("mail.smtp.port", String.valueOf(smtpPort));
         return Session.getDefaultInstance(props, null);
     }
 
