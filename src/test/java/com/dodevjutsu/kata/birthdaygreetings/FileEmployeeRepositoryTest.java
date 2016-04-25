@@ -26,4 +26,14 @@ public class FileEmployeeRepositoryTest {
         service.whoseBirthdayIsOn(new OurDate("2016/01/01"));
     }
 
+    @Test
+    public void fails_when_the_file_does_not_have_the_necessary_fields() throws Exception {
+
+        FileEmployeeRepository service = new FileEmployeeRepository("src/test/resources/wrong_data__wrong-date-format.csv");
+        expected.expect(CannotReadEmployeesException.class);
+        expected.expectMessage(containsString("cannot parse employee"));
+
+        service.whoseBirthdayIsOn(new OurDate("2016/01/01"));
+    }
+
 }
