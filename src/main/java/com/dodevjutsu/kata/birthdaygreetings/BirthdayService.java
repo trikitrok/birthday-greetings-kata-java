@@ -13,6 +13,10 @@ public class BirthdayService {
 
     private EmployeeRepository employeeRepository;
 
+    public BirthdayService(EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
+    }
+
     public void sendGreetings(String fileName, OurDate ourDate,
                               String smtpHost, int smtpPort) throws AddressException, MessagingException {
         List<Employee> birthdayEmployees = getEmployeesHavingBirthdayOn(fileName, ourDate);
@@ -62,7 +66,7 @@ public class BirthdayService {
     }
 
     public static void main(String[] args) {
-        BirthdayService service = new BirthdayService();
+        BirthdayService service = new BirthdayService(new FileEmployeeRepository("employee_data.txt"));
         try {
             service.sendGreetings("employee_data.txt",
                     new OurDate("2008/10/08"), "localhost", 25);
