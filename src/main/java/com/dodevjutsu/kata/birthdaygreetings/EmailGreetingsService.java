@@ -16,9 +16,9 @@ public class EmailGreetingsService implements GreetingsService {
     }
 
     @Override
-    public void sendGreetingsTo(List<Employee> birthdayEmployees){
+    public void sendGreetingsTo(List<Employee> employees){
         try {
-            for (Employee employee : birthdayEmployees) {
+            for (Employee employee : employees) {
                 String recipient = employee.getEmail();
                 String body = "Happy Birthday, dear %NAME%!".replace("%NAME%",
                         employee.getFirstName());
