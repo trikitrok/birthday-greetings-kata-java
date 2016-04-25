@@ -7,6 +7,7 @@ import javax.mail.Message;
 import javax.mail.MessagingException;
 
 import com.dodevjutsu.kata.birthdaygreetings.BirthdayService;
+import com.dodevjutsu.kata.birthdaygreetings.EmailGreetingsService;
 import com.dodevjutsu.kata.birthdaygreetings.FileEmployeeRepository;
 import com.dodevjutsu.kata.birthdaygreetings.OurDate;
 
@@ -20,17 +21,18 @@ public class AcceptanceTest {
     private static final int SMTP_PORT = 25;
     private List<Message> messagesSent;
     private BirthdayService service;
+    private String smtpHost = "localhost";
 
     @Before
     public void setUp() throws Exception {
         messagesSent = new ArrayList<Message>();
 
-        service = new BirthdayService(new FileEmployeeRepository("src/test/resources/employee_data.txt")) {
+        service = new BirthdayService(new FileEmployeeRepository("src/test/resources/employee_data.txt"),
+                new EmailGreetingsService(smtpHost, SMTP_PORT) {
             @Override
             protected void sendMessage(Message msg) throws MessagingException {
                 messagesSent.add(msg);
-            }
-        };
+            }});
     }
 
     @Test
