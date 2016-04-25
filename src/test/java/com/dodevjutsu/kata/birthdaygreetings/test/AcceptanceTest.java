@@ -36,7 +36,7 @@ public class AcceptanceTest {
     @Test
     public void baseScenario() throws Exception {
 
-        service.sendGreetings("src/test/resources/employee_data.txt",
+        service.sendGreetings(
                 new OurDate("2008/10/08"), "localhost", SMTP_PORT);
 
         assertEquals("message not sent?", 1, messagesSent.size());
@@ -50,7 +50,7 @@ public class AcceptanceTest {
 
     @Test
     public void willNotSendEmailsWhenNobodysBirthday() throws Exception {
-        service.sendGreetings("src/test/resources/employee_data.txt",
+        service.sendGreetings(
                 new OurDate("2008/01/01"), "localhost", SMTP_PORT);
 
         assertEquals("what? messages?", 0, messagesSent.size());

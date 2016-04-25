@@ -17,7 +17,7 @@ public class BirthdayService {
         this.employeeRepository = employeeRepository;
     }
 
-    public void sendGreetings(String fileName, OurDate ourDate,
+    public void sendGreetings(OurDate ourDate,
                               String smtpHost, int smtpPort) throws AddressException, MessagingException {
         List<Employee> birthdayEmployees = getEmployeesHavingBirthdayOn(ourDate);
         sendGreetingsTo(smtpHost, smtpPort, birthdayEmployees);
@@ -67,7 +67,7 @@ public class BirthdayService {
     public static void main(String[] args) {
         BirthdayService service = new BirthdayService(new FileEmployeeRepository("employee_data.txt"));
         try {
-            service.sendGreetings("employee_data.txt",
+            service.sendGreetings(
                     new OurDate("2008/10/08"), "localhost", 25);
         } catch (Exception e) {
             e.printStackTrace();
