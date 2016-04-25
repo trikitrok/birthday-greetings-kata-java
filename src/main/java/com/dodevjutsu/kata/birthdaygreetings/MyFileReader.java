@@ -14,8 +14,7 @@ public class MyFileReader {
     }
 
     public Iterator<String> skipHeader() throws IOException {
-        Iterator<String> iterator = readFile();
-        return skipHeader(iterator);
+        return skipHeader(readFile());
     }
 
     private Iterator<String> readFile() throws IOException {
