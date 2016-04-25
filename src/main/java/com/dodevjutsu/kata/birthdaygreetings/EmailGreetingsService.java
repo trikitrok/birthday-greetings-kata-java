@@ -4,7 +4,6 @@ import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.List;
@@ -12,10 +11,12 @@ import java.util.List;
 public class EmailGreetingsService implements GreetingsService {
     private final String smtpHost;
     private final int smtpPort;
+    private final Session session;
 
     public EmailGreetingsService(String smtpHost, int smtpPort) {
         this.smtpHost = smtpHost;
         this.smtpPort = smtpPort;
+        session = configureProperties(smtpHost, smtpPort);
     }
 
     @Override
@@ -37,11 +38,6 @@ public class EmailGreetingsService implements GreetingsService {
     private void sendMessage(String smtpHost, int smtpPort, String sender,
                              String subject, String body, String recipient)
             throws MessagingException {
-        // Create a mail session
-        java.util.Properties props = new java.util.Properties();
-        props.put("mail.smtp.host", smtpHost);
-        props.put("mail.smtp.port", "" + smtpPort);
-        Session session = Session.getDefaultInstance(props, null);
 
         // Construct the message
         Message msg = new MimeMessage(session);
@@ -53,6 +49,13 @@ public class EmailGreetingsService implements GreetingsService {
 
         // Send the message
         sendMessage(msg);
+    }
+
+    private Session configureProperties(String smtpHost, int smtpPort) {
+        java.util.Properties props = new java.util.Properties();
+        props.put("mail.smtp.host", smtpHost);
+        props.put("mail.smtp.port", "" + smtpPort);
+        return Session.getDefaultInstance(props, null);
     }
 
     // made protected for testing :-(
