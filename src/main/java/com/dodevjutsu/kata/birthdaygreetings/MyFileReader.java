@@ -3,7 +3,6 @@ package com.dodevjutsu.kata.birthdaygreetings;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.List;
 
@@ -16,8 +15,7 @@ public class MyFileReader {
 
     public Iterator<String> skipHeader() throws IOException {
         Iterator<String> iterator = readFile();
-        skipHeader(iterator);
-        return iterator;
+        return skipHeader(iterator);
     }
 
     private Iterator<String> readFile() throws IOException {
@@ -25,7 +23,8 @@ public class MyFileReader {
         return lines.iterator();
     }
 
-    private void skipHeader(Iterator<String> iterator) {
+    private Iterator<String> skipHeader(Iterator<String> iterator) {
         iterator.next();
+        return iterator;
     }
 }
