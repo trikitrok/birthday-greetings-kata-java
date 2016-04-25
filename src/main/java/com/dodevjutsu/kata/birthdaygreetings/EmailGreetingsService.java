@@ -9,13 +9,9 @@ import javax.mail.internet.MimeMessage;
 import java.util.List;
 
 public class EmailGreetingsService implements GreetingsService {
-    private final String smtpHost;
-    private final int smtpPort;
     private final Session session;
 
     public EmailGreetingsService(String smtpHost, int smtpPort) {
-        this.smtpHost = smtpHost;
-        this.smtpPort = smtpPort;
         session = configureProperties(smtpHost, smtpPort);
     }
 
