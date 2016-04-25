@@ -5,11 +5,11 @@ import java.util.List;
 public class BirthdayService {
 
     private EmployeeRepository employeeRepository;
-    private EmailGreetingsService emailGreetingsService;
+    private GreetingsService greetingsService;
 
-    public BirthdayService(EmployeeRepository employeeRepository, EmailGreetingsService emailGreetingsService) {
+    public BirthdayService(EmployeeRepository employeeRepository, GreetingsService greetingsService) {
         this.employeeRepository = employeeRepository;
-        this.emailGreetingsService = emailGreetingsService;
+        this.greetingsService = greetingsService;
     }
 
     public void sendGreetings(OurDate ourDate) {
@@ -18,7 +18,7 @@ public class BirthdayService {
     }
 
     private void sendGreetingsTo(List<Employee> birthdayEmployees) {
-        emailGreetingsService.sendGreetingsTo(birthdayEmployees);
+        greetingsService.sendGreetingsTo(birthdayEmployees);
     }
 
     private List<Employee> getEmployeesHavingBirthdayOn(OurDate ourDate) {
