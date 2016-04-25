@@ -40,15 +40,20 @@ public class EmailGreetingsService implements GreetingsService {
             throws MessagingException {
 
         // Construct the message
+        Message msg = buildMessage(sender, subject, body, recipient);
+
+        // Send the message
+        sendMessage(msg);
+    }
+
+    private Message buildMessage(String sender, String subject, String body, String recipient) throws MessagingException {
         Message msg = new MimeMessage(session);
         msg.setFrom(new InternetAddress(sender));
         msg.setRecipient(Message.RecipientType.TO, new InternetAddress(
                 recipient));
         msg.setSubject(subject);
         msg.setText(body);
-
-        // Send the message
-        sendMessage(msg);
+        return msg;
     }
 
     private Session configureProperties(String smtpHost, int smtpPort) {
