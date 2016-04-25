@@ -15,10 +15,10 @@ public class BirthdayService {
     public void sendGreetings(OurDate ourDate,
                               String smtpHost, int smtpPort) {
         List<Employee> birthdayEmployees = getEmployeesHavingBirthdayOn(ourDate);
-        sendGreetingsTo(smtpHost, smtpPort, birthdayEmployees);
+        sendGreetingsTo(birthdayEmployees);
     }
 
-    private void sendGreetingsTo(String smtpHost, int smtpPort, List<Employee> birthdayEmployees) {
+    private void sendGreetingsTo(List<Employee> birthdayEmployees) {
         emailGreetingsService.sendGreetingsTo(birthdayEmployees);
     }
 
