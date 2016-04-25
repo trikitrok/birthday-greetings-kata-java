@@ -9,8 +9,8 @@ public class OurDate {
 
     private Date date;
 
-    public OurDate(String yyyyMMdd) throws ParseException {
-        date = new SimpleDateFormat("yyyy/MM/dd").parse(yyyyMMdd);
+    public OurDate(String yyyy_slash_MM_slash_dd) throws ParseException {
+        date = new SimpleDateFormat("yyyy/MM/dd").parse(yyyy_slash_MM_slash_dd);
     }
 
     public int getDay() {
