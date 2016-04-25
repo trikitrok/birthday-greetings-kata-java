@@ -15,9 +15,13 @@ public class MyFileReader {
     }
 
     public Iterator<String> skipHeader() throws IOException {
-        List<String> lines = Files.readAllLines(path);
-        Iterator<String> iterator = lines.iterator();
+        Iterator<String> iterator = readFile();
         iterator.next();
         return iterator;
+    }
+
+    private Iterator<String> readFile() throws IOException {
+        List<String> lines = Files.readAllLines(path);
+        return lines.iterator();
     }
 }
