@@ -27,8 +27,7 @@ public class EmailGreetingsService implements GreetingsService {
                 String body = "Happy Birthday, dear %NAME%!".replace("%NAME%",
                         employee.getFirstName());
                 String subject = "Happy Birthday!";
-                sendMessage("sender@here.com", subject,
-                        body, recipient);
+                sendMessage("sender@here.com", subject, body, recipient);
             }
         } catch (MessagingException exception) {
             throw new CannotSendGreetingsException("failed sending emails", exception);
