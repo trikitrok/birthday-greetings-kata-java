@@ -35,8 +35,7 @@ public class EmailGreetingsService implements GreetingsService {
         }
     }
 
-    private void sendMessage(String sender,
-                             String subject, String body, String recipient)
+    private void sendMessage(String sender, String subject, String body, String recipient)
             throws MessagingException {
 
         Message msg = buildMessage(sender, subject, body, recipient);
