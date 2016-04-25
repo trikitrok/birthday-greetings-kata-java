@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class FileEmployeeRepository {
+public class FileEmployeeRepository implements EmployeeRepository {
     private final String fileName;
 
     public FileEmployeeRepository(String fileName) {
@@ -19,6 +19,7 @@ public class FileEmployeeRepository {
     }
 
 
+    @Override
     public List<Employee> whoseBirthdayIsOn(OurDate ourDate) {
         String str = "";
         List<Employee> birthdayEmployees = new ArrayList();
