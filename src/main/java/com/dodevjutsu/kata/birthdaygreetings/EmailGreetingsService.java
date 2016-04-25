@@ -43,13 +43,13 @@ public class EmailGreetingsService implements GreetingsService {
     }
 
     private Message buildMessage(String sender, String subject, String body, String recipient) throws MessagingException {
-        Message msg = new MimeMessage(session);
-        msg.setFrom(new InternetAddress(sender));
-        msg.setRecipient(Message.RecipientType.TO, new InternetAddress(
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(sender));
+        message.setRecipient(Message.RecipientType.TO, new InternetAddress(
                 recipient));
-        msg.setSubject(subject);
-        msg.setText(body);
-        return msg;
+        message.setSubject(subject);
+        message.setText(body);
+        return message;
     }
 
     private Session configureProperties(String smtpHost, int smtpPort) {
