@@ -35,7 +35,6 @@ public class BirthdayService {
     }
 
     private List<Employee> getEmployeesHavingBirthdayOn(String fileName, OurDate ourDate) {
-        employeeRepository = new FileEmployeeRepository(fileName);
         return employeeRepository.whoseBirthdayIsOn(ourDate);
     }
 
