@@ -1,20 +1,18 @@
 package com.dodevjutsu.kata.birthdaygreetings.test;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.mail.Message;
-import javax.mail.MessagingException;
-
 import com.dodevjutsu.kata.birthdaygreetings.BirthdayService;
 import com.dodevjutsu.kata.birthdaygreetings.EmailGreetingsService;
 import com.dodevjutsu.kata.birthdaygreetings.FileEmployeeRepository;
 import com.dodevjutsu.kata.birthdaygreetings.OurDate;
-
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 public class AcceptanceTest {
 

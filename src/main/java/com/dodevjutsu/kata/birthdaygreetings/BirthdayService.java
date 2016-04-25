@@ -1,7 +1,5 @@
 package com.dodevjutsu.kata.birthdaygreetings;
 
-import javax.mail.MessagingException;
-import javax.mail.internet.AddressException;
 import java.util.List;
 
 public class BirthdayService {
@@ -15,12 +13,12 @@ public class BirthdayService {
     }
 
     public void sendGreetings(OurDate ourDate,
-                              String smtpHost, int smtpPort) throws AddressException, MessagingException {
+                              String smtpHost, int smtpPort) {
         List<Employee> birthdayEmployees = getEmployeesHavingBirthdayOn(ourDate);
         sendGreetingsTo(smtpHost, smtpPort, birthdayEmployees);
     }
 
-    private void sendGreetingsTo(String smtpHost, int smtpPort, List<Employee> birthdayEmployees) throws MessagingException {
+    private void sendGreetingsTo(String smtpHost, int smtpPort, List<Employee> birthdayEmployees) {
         emailGreetingsService.sendGreetingsTo(birthdayEmployees);
     }
 
