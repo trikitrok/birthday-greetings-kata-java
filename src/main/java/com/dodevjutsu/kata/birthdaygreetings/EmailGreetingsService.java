@@ -12,7 +12,7 @@ public class EmailGreetingsService implements GreetingsService {
     private final Session session;
 
     public EmailGreetingsService(String smtpHost, int smtpPort) {
-        session = configureProperties(smtpHost, smtpPort);
+        session = obtainSession(smtpHost, smtpPort);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class EmailGreetingsService implements GreetingsService {
         return message;
     }
 
-    private Session configureProperties(String smtpHost, int smtpPort) {
+    private Session obtainSession(String smtpHost, int smtpPort) {
         java.util.Properties props = new java.util.Properties();
         props.put("mail.smtp.host", smtpHost);
         props.put("mail.smtp.port", "" + smtpPort);
