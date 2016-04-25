@@ -12,8 +12,7 @@ public class BirthdayService {
         this.emailGreetingsService = emailGreetingsService;
     }
 
-    public void sendGreetings(OurDate ourDate,
-                              String smtpHost, int smtpPort) {
+    public void sendGreetings(OurDate ourDate) {
         List<Employee> birthdayEmployees = getEmployeesHavingBirthdayOn(ourDate);
         sendGreetingsTo(birthdayEmployees);
     }
@@ -30,7 +29,7 @@ public class BirthdayService {
         BirthdayService service = new BirthdayService(new FileEmployeeRepository("employee_data.txt"), new EmailGreetingsService("localhost", 25));
         try {
             service.sendGreetings(
-                    new OurDate("2008/10/08"), "localhost", 25);
+                    new OurDate("2008/10/08"));
         } catch (Exception e) {
             e.printStackTrace();
         }
