@@ -32,7 +32,7 @@ public class FileEmployeeRepository implements EmployeeRepository {
                 }
             }
         } catch (IOException e) {
-            throw new CannotReadEmployeesException("cannot read file = " + Paths.get(fileName).toAbsolutePath(), e);
+            throw new CannotReadEmployeesException(String.format("cannot read file = '%s'", Paths.get(fileName).toAbsolutePath()), e);
         } catch (ParseException e) {
             throw new CannotReadEmployeesException(String.format("cannot parse employee: '%s'", str), e);
         }
