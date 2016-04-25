@@ -9,7 +9,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.List;
 
-public class EmailGreetingsService {
+public class EmailGreetingsService implements GreetingsService {
     private final String smtpHost;
     private final int smtpPort;
 
@@ -18,14 +18,19 @@ public class EmailGreetingsService {
         this.smtpPort = smtpPort;
     }
 
-    public void sendGreetingsTo(List<Employee> birthdayEmployees) throws MessagingException {
-        for (Employee employee : birthdayEmployees) {
-            String recipient = employee.getEmail();
-            String body = "Happy Birthday, dear %NAME%!".replace("%NAME%",
-                    employee.getFirstName());
-            String subject = "Happy Birthday!";
-            sendMessage(smtpHost, smtpPort, "sender@here.com", subject,
-                    body, recipient);
+    @Override
+    public void sendGreetingsTo(List<Employee> birthdayEmployees){
+        try {
+            for (Employee employee : birthdayEmployees) {
+                String recipient = employee.getEmail();
+                String body = "Happy Birthday, dear %NAME%!".replace("%NAME%",
+                        employee.getFirstName());
+                String subject = "Happy Birthday!";
+                sendMessage(smtpHost, smtpPort, "sender@here.com", subject,
+                        body, recipient);
+            }
+        } catch (MessagingException exception) {
+            throw new CannotSendGreetingsException("failed sending emails", exception);
         }
     }
 
