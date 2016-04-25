@@ -18,10 +18,10 @@ public class EmailGreetingsService implements GreetingsService {
     @Override
     public void sendGreetingsTo(List<Employee> employees){
         try {
-            for (Employee employee : employees) {
-                String recipient = employee.getEmail();
+            for (Employee current : employees) {
+                String recipient = current.getEmail();
                 String body = "Happy Birthday, dear %NAME%!".replace("%NAME%",
-                        employee.getFirstName());
+                        current.getFirstName());
                 String subject = "Happy Birthday!";
                 Message message = buildMessage("sender@here.com", subject, body, recipient);
                 sendMessage(message);
