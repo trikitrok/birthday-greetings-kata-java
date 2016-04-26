@@ -21,16 +21,10 @@ public class BirthdayService {
     private List<GreetingMessage> generateGreetings(List<Employee> employees) {
         ArrayList<GreetingMessage> greetingMessages = new ArrayList<>();
         for (Employee employee : employees) {
-            final GreetingMessage greetingMessage = generateGreetingMessage(employee);
+            final GreetingMessage greetingMessage = GreetingMessage.generateFor(employee);
             greetingMessages.add(greetingMessage);
         }
         return greetingMessages;
-    }
-
-    private GreetingMessage generateGreetingMessage(Employee employee) {
-        Greeting greeting = Greeting.greetingFor(employee);
-        String recipient = employee.getEmail();
-        return new GreetingMessage(new Address(recipient), greeting);
     }
 
     private void sendMessages(List<GreetingMessage> birthdayEmployees) {
