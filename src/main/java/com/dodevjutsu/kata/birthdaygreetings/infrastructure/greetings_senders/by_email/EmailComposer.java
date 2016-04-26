@@ -27,7 +27,7 @@ class EmailComposer {
             message.setText(greetingMessage.text());
             return message;
         } catch (MessagingException exception) {
-            throw new CannotSendGreetingsException("failed generating emails", exception);
+            throw new CannotSendGreetingsException("failed generating email", exception);
         }
     }
 

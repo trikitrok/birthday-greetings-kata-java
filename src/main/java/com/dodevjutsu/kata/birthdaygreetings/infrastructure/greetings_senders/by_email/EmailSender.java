@@ -11,7 +11,7 @@ public class EmailSender {
         try {
             Transport.send(message);
         } catch (MessagingException exception) {
-            throw new CannotSendGreetingsException("failed sending emails", exception);
+            throw new CannotSendGreetingsException("failed sending email", exception);
         }
     }
 }
