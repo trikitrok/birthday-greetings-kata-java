@@ -22,8 +22,8 @@ public class BirthdayService {
         return employees.stream().map(GreetingMessage::generateFor).collect(toList());
     }
 
-    private void send(List<GreetingMessage> birthdayEmployees) {
-        greetingsService.sendGreetingsTo(birthdayEmployees);
+    private void send(List<GreetingMessage> greetingMessages) {
+        greetingsService.sendGreetingsTo(greetingMessages);
     }
 
     private List<Employee> employeesHavingBirthdayOn(OurDate ourDate) {
