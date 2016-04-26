@@ -14,12 +14,12 @@ public class BirthdayService {
         this.greetingsService = greetingsService;
     }
 
-    public void sendGreetings(OurDate ourDate) {
-        List<Employee> employees = getEmployeesHavingBirthdayOn(ourDate);
-        send(greetingMessages(employees));
+    public void sendGreetings(OurDate date) {
+        List<Employee> employees = getEmployeesHavingBirthdayOn(date);
+        send(greetingMessagesFor(employees));
     }
 
-    private List<GreetingMessage> greetingMessages(List<Employee> employees) {
+    private List<GreetingMessage> greetingMessagesFor(List<Employee> employees) {
         return employees.stream().map(GreetingMessage::generateFor).collect(toList());
     }
 
