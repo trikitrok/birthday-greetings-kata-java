@@ -20,7 +20,7 @@ public class EmailGreetingsService implements GreetingsService {
         try {
             for (Employee current : employees) {
                 String recipient = current.getEmail();
-                String body = "Happy Birthday, dear %NAME%!".replace("%NAME%", current.getFirstName());
+                String body = String.format("Happy Birthday, dear %s!", current.getFirstName());
                 String subject = "Happy Birthday!";
                 Message message = buildMessage("sender@here.com", subject, body, recipient);
                 sendMessage(message);
