@@ -9,11 +9,11 @@ import javax.mail.Session;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-class EmailFactory {
+class EmailComposer {
     private final Session session;
     private final String from;
 
-    public EmailFactory(String from, String smtpHost, int smtpPort){
+    public EmailComposer(String from, String smtpHost, int smtpPort){
         this.from = from;
         this.session = session(smtpHost, smtpPort);
     }

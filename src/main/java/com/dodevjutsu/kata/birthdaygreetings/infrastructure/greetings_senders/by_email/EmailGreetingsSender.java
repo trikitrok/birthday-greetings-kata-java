@@ -8,18 +8,18 @@ import java.util.List;
 public class EmailGreetingsSender implements GreetingsSender {
     private static final String FROM = "sender@here.com";
     private final EmailSender emailSender;
-    private final EmailFactory emailFactory;
+    private final EmailComposer emailComposer;
 
     public EmailGreetingsSender(String smtpHost, int smtpPort, EmailSender emailSender) {
         this.emailSender = emailSender;
-        this.emailFactory = new EmailFactory(FROM, smtpHost, smtpPort);
+        this.emailComposer = new EmailComposer(FROM, smtpHost, smtpPort);
     }
 
     @Override
     public void send(List<GreetingMessage> messages){
         for (GreetingMessage message : messages) {
             emailSender.sendMessage(
-                emailFactory.composeEmailFor(message)
+                emailComposer.composeEmailFor(message)
             );
         }
     }
