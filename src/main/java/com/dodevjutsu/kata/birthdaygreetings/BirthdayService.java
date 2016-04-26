@@ -15,8 +15,7 @@ public class BirthdayService {
     }
 
     public void sendGreetings(OurDate date) {
-        List<Employee> employees = getEmployeesHavingBirthdayOn(date);
-        send(greetingMessagesFor(employees));
+        send(greetingMessagesFor(employeesHavingBirthdayOn(date)));
     }
 
     private List<GreetingMessage> greetingMessagesFor(List<Employee> employees) {
@@ -27,7 +26,7 @@ public class BirthdayService {
         greetingsService.sendGreetingsTo(birthdayEmployees);
     }
 
-    private List<Employee> getEmployeesHavingBirthdayOn(OurDate ourDate) {
+    private List<Employee> employeesHavingBirthdayOn(OurDate ourDate) {
         return employeeRepository.whoseBirthdayIsOn(ourDate);
     }
 
