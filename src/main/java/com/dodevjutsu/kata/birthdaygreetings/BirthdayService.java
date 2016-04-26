@@ -1,5 +1,6 @@
 package com.dodevjutsu.kata.birthdaygreetings;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BirthdayService {
@@ -14,10 +15,23 @@ public class BirthdayService {
 
     public void sendGreetings(OurDate ourDate) {
         List<Employee> birthdayEmployees = getEmployeesHavingBirthdayOn(ourDate);
-        sendGreetingsTo(birthdayEmployees);
+        sendMessages(generateGreetings(birthdayEmployees));
     }
 
-    private void sendGreetingsTo(List<Employee> birthdayEmployees) {
+    private List<GreetingMessage> generateGreetings(List<Employee> employees) {
+        ArrayList<GreetingMessage> results = new ArrayList<>();
+        for (Employee current : employees) {
+            String body = String.format("Happy Birthday, dear %s!", current.getFirstName());
+            String subject = "Happy Birthday!";
+
+            String recipient = current.getEmail();
+
+            results.add(new GreetingMessage(new Address(recipient), new Greeting(subject, body)));
+        }
+        return results;
+    }
+
+    private void sendMessages(List<GreetingMessage> birthdayEmployees) {
         greetingsService.sendGreetingsTo(birthdayEmployees);
     }
 

@@ -16,27 +16,26 @@ public class EmailGreetingsService implements GreetingsService {
     }
 
     @Override
-    public void sendGreetingsTo(List<Employee> employees){
+    public void sendGreetingsTo(List<GreetingMessage> messages){
         try {
-            for (Employee current : employees) {
-                String recipient = current.getEmail();
-                String body = String.format("Happy Birthday, dear %s!", current.getFirstName());
-                String subject = "Happy Birthday!";
-                final String from = "sender@here.com";
-                sendMessage(buildMessage(from, subject, body, recipient));
+            for (GreetingMessage message : messages) {
+                sendMessage(generateEmail(message));
             }
         } catch (MessagingException exception) {
             throw new CannotSendGreetingsException("failed sending emails", exception);
         }
     }
 
-    private Message buildMessage(String sender, String subject, String body, String recipient) throws MessagingException {
-        Message message = new MimeMessage(session);
-        message.setFrom(new InternetAddress(sender));
-        message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-        message.setSubject(subject);
-        message.setText(body);
-        return message;
+    private Message generateEmail(GreetingMessage message) throws MessagingException {
+        final String from = "sender@here.com";
+
+        Message result = new MimeMessage(session);
+        result.setFrom(new InternetAddress(from));
+        result.setRecipient(Message.RecipientType.TO, new InternetAddress(message.address()));
+        result.setSubject(message.subject());
+        result.setText(message.text());
+        return result;
+
     }
 
     private Session obtainSession(String smtpHost, int smtpPort) {
