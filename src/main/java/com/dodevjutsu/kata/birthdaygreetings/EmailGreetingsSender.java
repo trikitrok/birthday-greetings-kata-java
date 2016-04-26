@@ -17,23 +17,24 @@ public class EmailGreetingsSender implements GreetingsSender {
 
     @Override
     public void send(List<GreetingMessage> messages){
-        try {
-            for (GreetingMessage message : messages) {
-                sendMessage(generateEmail(message));
-            }
-        } catch (MessagingException exception) {
-            throw new CannotSendGreetingsException("failed sending emails", exception);
+        for (GreetingMessage message : messages) {
+            sendMessage(generateEmail(message));
         }
     }
 
-    private Message generateEmail(GreetingMessage message) throws MessagingException {
+    private Message generateEmail(GreetingMessage message) {
         final String from = "sender@here.com";
 
-        Message result = new MimeMessage(session);
-        result.setFrom(new InternetAddress(from));
-        result.setRecipient(Message.RecipientType.TO, new InternetAddress(message.address()));
-        result.setSubject(message.subject());
-        result.setText(message.text());
+        Message result;
+        try {
+            result = new MimeMessage(session);
+            result.setFrom(new InternetAddress(from));
+            result.setRecipient(Message.RecipientType.TO, new InternetAddress(message.address()));
+            result.setSubject(message.subject());
+            result.setText(message.text());
+        } catch (MessagingException exception) {
+            throw new CannotSendGreetingsException("failed generating emails", exception);
+        }
         return result;
 
     }
@@ -46,7 +47,11 @@ public class EmailGreetingsSender implements GreetingsSender {
     }
 
     // made protected for testing :-(
-    protected void sendMessage(Message msg) throws MessagingException {
-        Transport.send(msg);
+    protected void sendMessage(Message msg) {
+        try {
+            Transport.send(msg);
+        } catch (MessagingException exception) {
+            throw new CannotSendGreetingsException("failed sending emails", exception);
+        }
     }
 }

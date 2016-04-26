@@ -28,7 +28,7 @@ public class AcceptanceTest {
         service = new BirthdayService(new FileEmployeeRepository("src/test/resources/employee_data.txt"),
                 new EmailGreetingsSender(smtpHost, SMTP_PORT) {
             @Override
-            protected void sendMessage(Message msg) throws MessagingException {
+            protected void sendMessage(Message msg) {
                 messagesSent.add(msg);
             }});
     }
