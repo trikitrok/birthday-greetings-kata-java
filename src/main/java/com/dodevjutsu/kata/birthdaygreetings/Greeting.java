@@ -4,7 +4,7 @@ public class Greeting {
     private final String header;
     private final String content;
 
-    public Greeting(String header, String content) {
+    private Greeting(String header, String content) {
         this.header = header;
         this.content = content;
     }
