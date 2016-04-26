@@ -1,7 +1,8 @@
 package com.dodevjutsu.kata.birthdaygreetings;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static java.util.stream.Collectors.*;
 
 public class BirthdayService {
 
@@ -14,20 +15,15 @@ public class BirthdayService {
     }
 
     public void sendGreetings(OurDate ourDate) {
-        List<Employee> birthdayEmployees = getEmployeesHavingBirthdayOn(ourDate);
-        sendMessages(generateGreetings(birthdayEmployees));
+        List<Employee> employees = getEmployeesHavingBirthdayOn(ourDate);
+        send(greetingMessages(employees));
     }
 
-    private List<GreetingMessage> generateGreetings(List<Employee> employees) {
-        ArrayList<GreetingMessage> greetingMessages = new ArrayList<>();
-        for (Employee employee : employees) {
-            final GreetingMessage greetingMessage = GreetingMessage.generateFor(employee);
-            greetingMessages.add(greetingMessage);
-        }
-        return greetingMessages;
+    private List<GreetingMessage> greetingMessages(List<Employee> employees) {
+        return employees.stream().map(GreetingMessage::generateFor).collect(toList());
     }
 
-    private void sendMessages(List<GreetingMessage> birthdayEmployees) {
+    private void send(List<GreetingMessage> birthdayEmployees) {
         greetingsService.sendGreetingsTo(birthdayEmployees);
     }
 
