@@ -1,4 +1,4 @@
-package com.dodevjutsu.kata.birthdaygreetings;
+package com.dodevjutsu.kata.birthdaygreetings.core;
 
 public class Address {
     private final String value;
@@ -7,7 +7,7 @@ public class Address {
         this.value = value;
     }
 
-    public String value() {
+    public String asString() {
         return value;
     }
 }

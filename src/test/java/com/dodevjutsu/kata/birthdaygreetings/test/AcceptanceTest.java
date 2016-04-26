@@ -1,18 +1,19 @@
 package com.dodevjutsu.kata.birthdaygreetings.test;
 
-import com.dodevjutsu.kata.birthdaygreetings.BirthdayService;
-import com.dodevjutsu.kata.birthdaygreetings.EmailGreetingsSender;
-import com.dodevjutsu.kata.birthdaygreetings.FileEmployeeRepository;
-import com.dodevjutsu.kata.birthdaygreetings.OurDate;
+import com.dodevjutsu.kata.birthdaygreetings.application.BirthdayService;
+import com.dodevjutsu.kata.birthdaygreetings.core.OurDate;
+import com.dodevjutsu.kata.birthdaygreetings.infrastructure.greetings_senders.by_email.EmailGreetingsSender;
+import com.dodevjutsu.kata.birthdaygreetings.infrastructure.greetings_senders.by_email.EmailSender;
+import com.dodevjutsu.kata.birthdaygreetings.infrastructure.repositories.FileEmployeeRepository;
 import org.junit.Before;
 import org.junit.Test;
 
 import javax.mail.Message;
-import javax.mail.MessagingException;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class AcceptanceTest {
 
@@ -25,12 +26,17 @@ public class AcceptanceTest {
     public void setUp() throws Exception {
         messagesSent = new ArrayList<>();
 
-        service = new BirthdayService(new FileEmployeeRepository("src/test/resources/employee_data.txt"),
-                new EmailGreetingsSender(smtpHost, SMTP_PORT) {
-            @Override
-            protected void sendMessage(Message msg) {
-                messagesSent.add(msg);
-            }});
+        service = new BirthdayService(
+            new FileEmployeeRepository("src/test/resources/employee_data.txt"),
+            new EmailGreetingsSender(smtpHost, SMTP_PORT,
+                new EmailSender() {
+                    @Override
+                    public void sendMessage(Message msg) {
+                        messagesSent.add(msg);
+                    }
+                }
+            )
+        );
     }
 
     @Test
@@ -43,14 +49,13 @@ public class AcceptanceTest {
         assertEquals("Happy Birthday, dear John!", message.getContent());
         assertEquals("Happy Birthday!", message.getSubject());
         assertEquals(1, message.getAllRecipients().length);
-        assertEquals("john.doe@foobar.com",
-                message.getAllRecipients()[0].toString());
+        assertEquals("john.doe@foobar.com", message.getAllRecipients()[0].toString());
     }
 
     @Test
     public void willNotSendEmailsWhenNobodysBirthday() throws Exception {
         service.sendGreetings(new OurDate("2008/01/01"));
 
-        assertEquals("what? messages?", 0, messagesSent.size());
+        assertTrue("what? messages?", messagesSent.isEmpty());
     }
 }

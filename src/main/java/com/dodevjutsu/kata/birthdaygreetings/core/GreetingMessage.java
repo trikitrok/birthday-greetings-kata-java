@@ -1,30 +1,30 @@
-package com.dodevjutsu.kata.birthdaygreetings;
+package com.dodevjutsu.kata.birthdaygreetings.core;
 
 public class GreetingMessage {
 
-    private final Address address;
+    private final Address to;
     private final Greeting greeting;
 
-    private GreetingMessage(Address address, Greeting greeting) {
-        this.address = address;
+    private GreetingMessage(Address to, Greeting greeting) {
+        this.to = to;
         this.greeting = greeting;
     }
 
     public static GreetingMessage generateFor(Employee employee) {
         Greeting greeting = Greeting.greetingFor(employee);
-        String recipient = employee.getEmail();
+        String recipient = employee.email();
         return new GreetingMessage(new Address(recipient), greeting);
     }
 
     public String subject() {
-        return greeting.header();
+        return this.greeting.header();
     }
 
     public String text() {
-        return greeting.content();
+        return this.greeting.content();
     }
 
-    public String address() {
-        return address.value();
+    public String to() {
+        return this.to.asString();
     }
 }
