@@ -1,19 +1,26 @@
 package com.dodevjutsu.kata.birthdaygreetings;
 
 public class Greeting {
-    private final String subject;
-    private final String body;
+    private final String header;
+    private final String content;
 
-    public Greeting(String subject, String body) {
-        this.subject = subject;
-        this.body = body;
+    public Greeting(String header, String content) {
+        this.header = header;
+        this.content = content;
+    }
+
+    public static Greeting greetingFor(Employee employee){
+        String content = String.format("Happy Birthday, dear %s!", employee.getFirstName());
+        String header = "Happy Birthday!";
+
+        return new Greeting(header, content);
+    }
+
+    public String header() {
+        return header;
     }
 
     public String content() {
-        return body;
-    }
-
-    public String subject() {
-        return subject;
+        return content;
     }
 }

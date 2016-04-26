@@ -11,7 +11,7 @@ public class GreetingMessage {
     }
 
     public String subject() {
-        return message.subject();
+        return message.header();
     }
 
     public String text() {
