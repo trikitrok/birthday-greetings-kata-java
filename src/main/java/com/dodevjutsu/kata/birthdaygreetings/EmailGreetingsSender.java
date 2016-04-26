@@ -8,15 +8,15 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.List;
 
-public class EmailGreetingsService implements GreetingsService {
+public class EmailGreetingsSender implements GreetingsSender {
     private final Session session;
 
-    public EmailGreetingsService(String smtpHost, int smtpPort) {
+    public EmailGreetingsSender(String smtpHost, int smtpPort) {
         session = obtainSession(smtpHost, smtpPort);
     }
 
     @Override
-    public void sendGreetingsTo(List<GreetingMessage> messages){
+    public void send(List<GreetingMessage> messages){
         try {
             for (GreetingMessage message : messages) {
                 sendMessage(generateEmail(message));

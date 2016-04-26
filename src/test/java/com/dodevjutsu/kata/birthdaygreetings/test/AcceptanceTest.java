@@ -1,7 +1,7 @@
 package com.dodevjutsu.kata.birthdaygreetings.test;
 
 import com.dodevjutsu.kata.birthdaygreetings.BirthdayService;
-import com.dodevjutsu.kata.birthdaygreetings.EmailGreetingsService;
+import com.dodevjutsu.kata.birthdaygreetings.EmailGreetingsSender;
 import com.dodevjutsu.kata.birthdaygreetings.FileEmployeeRepository;
 import com.dodevjutsu.kata.birthdaygreetings.OurDate;
 import org.junit.Before;
@@ -26,7 +26,7 @@ public class AcceptanceTest {
         messagesSent = new ArrayList<>();
 
         service = new BirthdayService(new FileEmployeeRepository("src/test/resources/employee_data.txt"),
-                new EmailGreetingsService(smtpHost, SMTP_PORT) {
+                new EmailGreetingsSender(smtpHost, SMTP_PORT) {
             @Override
             protected void sendMessage(Message msg) throws MessagingException {
                 messagesSent.add(msg);

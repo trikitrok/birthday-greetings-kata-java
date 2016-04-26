@@ -7,11 +7,11 @@ import static java.util.stream.Collectors.*;
 public class BirthdayService {
 
     private EmployeeRepository employeeRepository;
-    private GreetingsService greetingsService;
+    private GreetingsSender greetingsSender;
 
-    public BirthdayService(EmployeeRepository employeeRepository, GreetingsService greetingsService) {
+    public BirthdayService(EmployeeRepository employeeRepository, GreetingsSender greetingsSender) {
         this.employeeRepository = employeeRepository;
-        this.greetingsService = greetingsService;
+        this.greetingsSender = greetingsSender;
     }
 
     public void sendGreetings(OurDate date) {
@@ -23,7 +23,7 @@ public class BirthdayService {
     }
 
     private void send(List<GreetingMessage> greetingMessages) {
-        greetingsService.sendGreetingsTo(greetingMessages);
+        greetingsSender.send(greetingMessages);
     }
 
     private List<Employee> employeesHavingBirthdayOn(OurDate ourDate) {
@@ -33,7 +33,7 @@ public class BirthdayService {
     public static void main(String[] args) {
         BirthdayService service = new BirthdayService(
                 new FileEmployeeRepository("employee_data.txt"),
-                new EmailGreetingsService("localhost", 25));
+                new EmailGreetingsSender("localhost", 25));
         try {
             service.sendGreetings(new OurDate("2008/10/08"));
         } catch (Exception e) {
