@@ -18,8 +18,9 @@ class Lines {
     public List<Employee> extractEmployees() {
         List<Employee> employees = new ArrayList<>();
         while (linesIterator.hasNext()) {
-            EmployeeCsvRepresentation representation = new EmployeeCsvRepresentation(linesIterator.next());
-            employees.add(representation.extractEmployee());
+            String line = linesIterator.next();
+            EmployeeCsvRepresentation representation = new EmployeeCsvRepresentation(line);
+            employees.add(representation.convertToEmployee());
         }
         return employees;
     }
@@ -33,7 +34,7 @@ class Lines {
             this.tokens = content.split(", ");
         }
 
-        public Employee extractEmployee() {
+        public Employee convertToEmployee() {
             return new Employee(firstName(), lastName(), birthDate(), email());
         }
 
