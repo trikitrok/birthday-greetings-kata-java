@@ -2,10 +2,10 @@ package com.dodevjutsu.kata.birthdaygreetings.core;
 
 public class GreetingMessage {
 
-    private final Address to;
+    private final String to;
     private final Greeting greeting;
 
-    private GreetingMessage(Address to, Greeting greeting) {
+    private GreetingMessage(String to, Greeting greeting) {
         this.to = to;
         this.greeting = greeting;
     }
@@ -13,7 +13,7 @@ public class GreetingMessage {
     public static GreetingMessage generateFor(Employee employee) {
         Greeting greeting = Greeting.greetingFor(employee);
         String recipient = employee.email();
-        return new GreetingMessage(new Address(recipient), greeting);
+        return new GreetingMessage(recipient, greeting);
     }
 
     public String subject() {
@@ -25,6 +25,6 @@ public class GreetingMessage {
     }
 
     public String to() {
-        return this.to.asString();
+        return this.to;
     }
 }

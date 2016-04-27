@@ -1,7 +1,5 @@
 package com.dodevjutsu.kata.birthdaygreetings.core;
 
-import java.text.ParseException;
-
 public class Employee {
 
     private OurDate birthDate;

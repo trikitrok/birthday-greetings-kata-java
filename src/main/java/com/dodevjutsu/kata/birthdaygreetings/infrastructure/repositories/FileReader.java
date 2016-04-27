@@ -21,11 +21,11 @@ class FileReader {
 
     private final Path path;
 
-    FileReader(Path path) {
+    private FileReader(Path path) {
         this.path = path;
     }
 
-    Iterator<String> skipHeader() throws IOException {
+    private Iterator<String> skipHeader() throws IOException {
         return skipHeader(readFile());
     }
 

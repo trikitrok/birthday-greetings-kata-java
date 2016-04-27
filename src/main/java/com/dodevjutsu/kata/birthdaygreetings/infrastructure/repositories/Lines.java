@@ -18,17 +18,17 @@ class Lines {
     public List<Employee> extractEmployees() {
         List<Employee> employees = new ArrayList<>();
         while (linesIterator.hasNext()) {
-            Line line = new Line(linesIterator.next());
-            employees.add(line.extractEmployee());
+            EmployeeCsvRepresentation representation = new EmployeeCsvRepresentation(linesIterator.next());
+            employees.add(representation.extractEmployee());
         }
         return employees;
     }
 
-    class Line {
+    class EmployeeCsvRepresentation {
         private String content;
         private final String[] tokens;
 
-        public Line(String content) {
+        public EmployeeCsvRepresentation(String content) {
             this.content = content;
             this.tokens = content.split(", ");
         }
