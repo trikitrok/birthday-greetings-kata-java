@@ -3,16 +3,24 @@ package com.dodevjutsu.kata.birthdaygreetings.infrastructure.repositories;
 import com.dodevjutsu.kata.birthdaygreetings.core.Employee;
 import com.dodevjutsu.kata.birthdaygreetings.core.OurDate;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-class Lines {
+class EmployeesFile {
     private final Iterator<String> linesIterator;
 
-    Lines(Iterator<String> linesIterator) {
+    private EmployeesFile(Iterator<String> linesIterator) {
         this.linesIterator = linesIterator;
+    }
+
+    public static EmployeesFile loadFrom(String path) {
+        return new EmployeesFile(FileReader.readSkippingHeader(path));
     }
 
     public List<Employee> extractEmployees() {
@@ -59,6 +67,30 @@ class Lines {
                     exception
                 );
             }
+        }
+    }
+
+    static class FileReader {
+        public static Iterator<String> readSkippingHeader(String pathString) {
+            Path path = Paths.get(pathString);
+            try {
+                return skipHeader(readFile(path));
+            } catch (IOException exception) {
+                throw new CannotReadEmployeesException(
+                    String.format("cannot loadFrom file = '%s'", path.toAbsolutePath()),
+                    exception
+                );
+            }
+        }
+
+        private static Iterator<String> readFile(Path path) throws IOException {
+            List<String> lines = Files.readAllLines(path);
+            return lines.iterator();
+        }
+
+        private static Iterator<String> skipHeader(Iterator<String> iterator) {
+            iterator.next();
+            return iterator;
         }
     }
 }
