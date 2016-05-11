@@ -1,14 +1,13 @@
 package com.dodevjutsu.kata.birthdaygreetings;
 
-import com.dodevjutsu.kata.birthdaygreetings.infrastructure.repositories.CannotReadEmployeesException;
 import com.dodevjutsu.kata.birthdaygreetings.core.OurDate;
+import com.dodevjutsu.kata.birthdaygreetings.infrastructure.repositories.CannotReadEmployeesException;
 import com.dodevjutsu.kata.birthdaygreetings.infrastructure.repositories.FileEmployeeRepository;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import static org.hamcrest.Matchers.is;
 import static org.hamcrest.core.StringContains.containsString;
 
 public class FileEmployeeRepositoryTest {
@@ -42,5 +41,4 @@ public class FileEmployeeRepositoryTest {
 
         service.whoseBirthdayIs(ANY_DATE);
     }
-
 }
