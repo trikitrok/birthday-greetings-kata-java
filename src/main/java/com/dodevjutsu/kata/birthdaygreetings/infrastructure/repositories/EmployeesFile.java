@@ -34,7 +34,7 @@ class EmployeesFile {
         return employees;
     }
 
-    class EmployeeCsvRepresentation {
+    private class EmployeeCsvRepresentation {
         private String content;
         private final String[] tokens;
 
@@ -75,7 +75,7 @@ class EmployeesFile {
         }
     }
 
-    class DateRepresentation {
+    private class DateRepresentation {
         private static final String DATE_FORMAT = "yyyy/MM/dd";
         private final String dateAsString;
 
@@ -90,7 +90,7 @@ class EmployeesFile {
         }
     }
 
-    static class FileReader {
+    private static class FileReader {
         public static Iterator<String> readSkippingHeader(String pathString) {
             Path path = Paths.get(pathString);
             try {
