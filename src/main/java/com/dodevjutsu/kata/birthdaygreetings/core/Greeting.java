@@ -1,6 +1,6 @@
 package com.dodevjutsu.kata.birthdaygreetings.core;
 
-public class Greeting {
+class Greeting {
     private final String header;
     private final String content;
 
@@ -9,17 +9,17 @@ public class Greeting {
         this.content = content;
     }
 
-    public static Greeting forBirthdayOf(Employee employee){
+    static Greeting forBirthdayOf(Employee employee){
         String content = String.format("Happy Birthday, dear %s!", employee.firstName());
         String header = "Happy Birthday!";
         return new Greeting(header, content);
     }
 
-    public String header() {
+    String header() {
         return header;
     }
 
-    public String content() {
+    String content() {
         return content;
     }
 }
