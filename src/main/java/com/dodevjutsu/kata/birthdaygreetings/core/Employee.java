@@ -19,11 +19,11 @@ public class Employee {
         return today.isSameDay(birthDate);
     }
 
-    public String email() {
+    String email() {
         return email;
     }
 
-    public String firstName() {
+    String firstName() {
         return firstName;
     }
 
