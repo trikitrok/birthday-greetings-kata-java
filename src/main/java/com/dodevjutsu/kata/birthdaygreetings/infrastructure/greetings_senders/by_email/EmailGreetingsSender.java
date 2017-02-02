@@ -29,16 +29,16 @@ public class EmailGreetingsSender implements GreetingsSender {
         }
     }
 
-    class EmailComposer {
+    private class EmailComposer {
         private final Session session;
         private final String from;
 
-        public EmailComposer(EmailConfiguration config) {
+        EmailComposer(EmailConfiguration config) {
             this.from = config.from();
             this.session = session(config.smtpHost(), config.smtpPort());
         }
 
-        public Message composeEmailFor(GreetingMessage greetingMessage) {
+        Message composeEmailFor(GreetingMessage greetingMessage) {
             try {
                 Message message = new MimeMessage(session);
                 message.setFrom(new InternetAddress(from));
