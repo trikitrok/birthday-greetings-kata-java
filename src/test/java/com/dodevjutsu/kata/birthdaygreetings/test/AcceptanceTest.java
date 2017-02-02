@@ -23,13 +23,13 @@ public class AcceptanceTest {
     private static final String FROM = "sender@here.com";
     private List<Message> messagesSent;
     private BirthdayService service;
+    private static final String EMPLOYEES_FILE_PATH = "src/test/resources/employee_data.txt";
 
     @Before
     public void setUp() throws Exception {
         messagesSent = new ArrayList<>();
-
         service = new BirthdayService(
-            new FileEmployeeRepository("src/test/resources/employee_data.txt"),
+            new FileEmployeeRepository(EMPLOYEES_FILE_PATH),
             new EmailGreetingsSender(
                 new EmailConfiguration(FROM, SMTP_HOST, SMTP_PORT),
                 new EmailSender() {
