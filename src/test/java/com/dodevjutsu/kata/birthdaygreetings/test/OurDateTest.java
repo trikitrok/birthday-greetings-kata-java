@@ -9,17 +9,17 @@ import static org.junit.Assert.*;
 public class OurDateTest {
     @Test
     public void getters() throws Exception {
-        OurDate ourDate = new DateRepresentation("1789/01/24").convertToDate();
+        OurDate ourDate = new DateRepresentation("1789/01/24").toDate();
         assertEquals(1, ourDate.getMonth());
         assertEquals(24, ourDate.getDay());
     }
 
     @Test
     public void isSameDate() throws Exception {
-        OurDate ourDate = new DateRepresentation("1789/01/24").convertToDate();
-        OurDate sameDay = new DateRepresentation("2001/01/24").convertToDate();
-        OurDate notSameDay = new DateRepresentation("1789/01/25").convertToDate();
-        OurDate notSameMonth = new DateRepresentation("1789/02/25").convertToDate();
+        OurDate ourDate = new DateRepresentation("1789/01/24").toDate();
+        OurDate sameDay = new DateRepresentation("2001/01/24").toDate();
+        OurDate notSameDay = new DateRepresentation("1789/01/25").toDate();
+        OurDate notSameMonth = new DateRepresentation("1789/02/25").toDate();
 
         assertTrue("same", ourDate.isSameDay(sameDay));
         assertFalse("not same day", ourDate.isSameDay(notSameDay));
@@ -28,9 +28,9 @@ public class OurDateTest {
 
     @Test
     public void equality() throws Exception {
-        OurDate base = new DateRepresentation("2000/01/02").convertToDate();
-        OurDate same = new DateRepresentation("2000/01/02").convertToDate();
-        OurDate different = new DateRepresentation("2000/01/04").convertToDate();
+        OurDate base = new DateRepresentation("2000/01/02").toDate();
+        OurDate same = new DateRepresentation("2000/01/02").toDate();
+        OurDate different = new DateRepresentation("2000/01/04").toDate();
 
         assertFalse(base.equals(null));
         assertFalse(base.equals(""));

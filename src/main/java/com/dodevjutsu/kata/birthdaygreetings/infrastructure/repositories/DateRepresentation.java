@@ -13,7 +13,7 @@ public class DateRepresentation {
         this.dateAsString = dateAsString;
     }
 
-    public OurDate convertToDate() throws ParseException {
+    public OurDate toDate() throws ParseException {
         return new OurDate(
             new SimpleDateFormat(DATE_FORMAT).parse(dateAsString)
         );

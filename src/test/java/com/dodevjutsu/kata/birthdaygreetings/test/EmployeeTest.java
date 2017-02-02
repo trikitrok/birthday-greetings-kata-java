@@ -13,18 +13,18 @@ public class EmployeeTest {
     public void testBirthday() throws Exception {
         Employee employee = new Employee(
             "foo", "bar",
-            new DateRepresentation("1990/01/31").convertToDate(),
+            new DateRepresentation("1990/01/31").toDate(),
             "a@b.c");
 
         assertFalse("not his birthday",
             employee.isBirthday(
-                new DateRepresentation("2008/01/30").convertToDate()
+                new DateRepresentation("2008/01/30").toDate()
             )
         );
 
         assertTrue("his birthday",
             employee.isBirthday(
-                new DateRepresentation("2008/01/31").convertToDate()
+                new DateRepresentation("2008/01/31").toDate()
             )
         );
     }
@@ -33,15 +33,15 @@ public class EmployeeTest {
     public void equality() throws Exception {
         Employee base = new Employee(
             "First", "Last",
-            new DateRepresentation("1999/09/01").convertToDate(),
+            new DateRepresentation("1999/09/01").toDate(),
             "first@last.com");
         Employee same = new Employee(
             "First", "Last",
-            new DateRepresentation("1999/09/01").convertToDate(),
+            new DateRepresentation("1999/09/01").toDate(),
             "first@last.com");
         Employee different = new Employee(
             "First", "Last",
-            new DateRepresentation("1999/09/01").convertToDate(),
+            new DateRepresentation("1999/09/01").toDate(),
             "boom@boom.com");
 
         assertFalse(base.equals(null));

@@ -60,7 +60,7 @@ class EmployeesFile {
 
         private OurDate birthDate() {
             try {
-                return new DateRepresentation(dateAsString()).convertToDate();
+                return new DateRepresentation(dateAsString()).toDate();
             } catch (ParseException exception) {
                 throw new CannotReadEmployeesException(
                     String.format("Badly formatted employee birth date in: '%s'", content),

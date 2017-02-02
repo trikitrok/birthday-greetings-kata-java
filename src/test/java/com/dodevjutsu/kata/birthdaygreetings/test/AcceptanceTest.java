@@ -43,7 +43,7 @@ public class AcceptanceTest {
 
     @Test
     public void baseScenario() throws Exception {
-        service.sendGreetings(new DateRepresentation("2008/10/08").convertToDate());
+        service.sendGreetings(new DateRepresentation("2008/10/08").toDate());
 
         assertEquals("message not sent?", 1, messagesSent.size());
         Message message = messagesSent.get(0);
@@ -56,7 +56,7 @@ public class AcceptanceTest {
     @Test
     public void willNotSendEmailsWhenNobodysBirthday() throws Exception {
         service.sendGreetings(
-            new DateRepresentation("2008/01/01").convertToDate()
+            new DateRepresentation("2008/01/01").toDate()
         );
 
         assertTrue("what? messages?", messagesSent.isEmpty());
