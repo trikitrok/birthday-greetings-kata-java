@@ -9,7 +9,7 @@ import static org.junit.Assert.assertTrue;
 
 public class EmployeeTest {
     @Test
-    public void testBirthday() throws Exception {
+    public void knows_the_date_of_its_birthday() throws Exception {
         Employee employee = new Employee(
             "foo", "bar",
             new DateRepresentation("1990/01/31").toDate(),
