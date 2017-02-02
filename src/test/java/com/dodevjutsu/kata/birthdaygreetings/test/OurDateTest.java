@@ -1,25 +1,25 @@
 package com.dodevjutsu.kata.birthdaygreetings.test;
 
-import static org.junit.Assert.*;
-
 import com.dodevjutsu.kata.birthdaygreetings.core.OurDate;
-
+import com.dodevjutsu.kata.birthdaygreetings.infrastructure.repositories.DateRepresentation;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class OurDateTest {
     @Test
     public void getters() throws Exception {
-        OurDate ourDate = new OurDate("1789/01/24");
+        OurDate ourDate = new DateRepresentation("1789/01/24").convertToDate();
         assertEquals(1, ourDate.getMonth());
         assertEquals(24, ourDate.getDay());
     }
 
     @Test
     public void isSameDate() throws Exception {
-        OurDate ourDate = new OurDate("1789/01/24");
-        OurDate sameDay = new OurDate("2001/01/24");
-        OurDate notSameDay = new OurDate("1789/01/25");
-        OurDate notSameMonth = new OurDate("1789/02/25");
+        OurDate ourDate = new DateRepresentation("1789/01/24").convertToDate();
+        OurDate sameDay = new DateRepresentation("2001/01/24").convertToDate();
+        OurDate notSameDay = new DateRepresentation("1789/01/25").convertToDate();
+        OurDate notSameMonth = new DateRepresentation("1789/02/25").convertToDate();
 
         assertTrue("same", ourDate.isSameDay(sameDay));
         assertFalse("not same day", ourDate.isSameDay(notSameDay));
@@ -28,9 +28,9 @@ public class OurDateTest {
 
     @Test
     public void equality() throws Exception {
-        OurDate base = new OurDate("2000/01/02");
-        OurDate same = new OurDate("2000/01/02");
-        OurDate different = new OurDate("2000/01/04");
+        OurDate base = new DateRepresentation("2000/01/02").convertToDate();
+        OurDate same = new DateRepresentation("2000/01/02").convertToDate();
+        OurDate different = new DateRepresentation("2000/01/04").convertToDate();
 
         assertFalse(base.equals(null));
         assertFalse(base.equals(""));

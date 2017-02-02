@@ -5,7 +5,7 @@ import com.dodevjutsu.kata.birthdaygreetings.core.OurDate;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-class DateRepresentation {
+public class DateRepresentation {
     private static final String DATE_FORMAT = "yyyy/MM/dd";
     private final String dateAsString;
 

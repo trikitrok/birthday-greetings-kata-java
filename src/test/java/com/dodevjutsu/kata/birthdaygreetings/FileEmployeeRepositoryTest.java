@@ -2,6 +2,7 @@ package com.dodevjutsu.kata.birthdaygreetings;
 
 import com.dodevjutsu.kata.birthdaygreetings.core.OurDate;
 import com.dodevjutsu.kata.birthdaygreetings.infrastructure.repositories.CannotReadEmployeesException;
+import com.dodevjutsu.kata.birthdaygreetings.infrastructure.repositories.DateRepresentation;
 import com.dodevjutsu.kata.birthdaygreetings.infrastructure.repositories.FileEmployeeRepository;
 import org.junit.Before;
 import org.junit.Rule;
@@ -18,7 +19,7 @@ public class FileEmployeeRepositoryTest {
 
     @Before
     public void setUp() throws Exception {
-        ANY_DATE = new OurDate("2016/01/01");
+        ANY_DATE = new DateRepresentation("2016/01/01").convertToDate();
     }
 
     @Test

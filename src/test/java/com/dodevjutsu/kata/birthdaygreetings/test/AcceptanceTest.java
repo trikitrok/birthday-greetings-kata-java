@@ -1,10 +1,10 @@
 package com.dodevjutsu.kata.birthdaygreetings.test;
 
 import com.dodevjutsu.kata.birthdaygreetings.application.BirthdayService;
-import com.dodevjutsu.kata.birthdaygreetings.core.OurDate;
 import com.dodevjutsu.kata.birthdaygreetings.infrastructure.greetings_senders.by_email.EmailConfiguration;
 import com.dodevjutsu.kata.birthdaygreetings.infrastructure.greetings_senders.by_email.EmailGreetingsSender;
 import com.dodevjutsu.kata.birthdaygreetings.infrastructure.greetings_senders.by_email.EmailSender;
+import com.dodevjutsu.kata.birthdaygreetings.infrastructure.repositories.DateRepresentation;
 import com.dodevjutsu.kata.birthdaygreetings.infrastructure.repositories.FileEmployeeRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +17,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class AcceptanceTest {
-
     private String SMTP_HOST = "localhost";
     private static final int SMTP_PORT = 25;
     private static final String FROM = "sender@here.com";
@@ -44,7 +43,7 @@ public class AcceptanceTest {
 
     @Test
     public void baseScenario() throws Exception {
-        service.sendGreetings(new OurDate("2008/10/08"));
+        service.sendGreetings(new DateRepresentation("2008/10/08").convertToDate());
 
         assertEquals("message not sent?", 1, messagesSent.size());
         Message message = messagesSent.get(0);
@@ -56,7 +55,9 @@ public class AcceptanceTest {
 
     @Test
     public void willNotSendEmailsWhenNobodysBirthday() throws Exception {
-        service.sendGreetings(new OurDate("2008/01/01"));
+        service.sendGreetings(
+            new DateRepresentation("2008/01/01").convertToDate()
+        );
 
         assertTrue("what? messages?", messagesSent.isEmpty());
     }
