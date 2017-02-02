@@ -8,7 +8,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -72,21 +71,6 @@ class EmployeesFile {
 
         private String dateAsString() {
             return tokens[2];
-        }
-    }
-
-    private class DateRepresentation {
-        private static final String DATE_FORMAT = "yyyy/MM/dd";
-        private final String dateAsString;
-
-        public DateRepresentation(String dateAsString) {
-            this.dateAsString = dateAsString;
-        }
-
-        public OurDate convertToDate() throws ParseException {
-            return new OurDate(
-                new SimpleDateFormat(DATE_FORMAT).parse(dateAsString)
-            );
         }
     }
 
