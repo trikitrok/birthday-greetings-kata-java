@@ -9,7 +9,7 @@ public class Greeting {
         this.content = content;
     }
 
-    public static Greeting greetingFor(Employee employee){
+    public static Greeting forBirthdayOf(Employee employee){
         String content = String.format("Happy Birthday, dear %s!", employee.firstName());
         String header = "Happy Birthday!";
         return new Greeting(header, content);

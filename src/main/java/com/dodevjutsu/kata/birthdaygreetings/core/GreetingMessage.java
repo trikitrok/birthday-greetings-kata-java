@@ -19,7 +19,7 @@ public class GreetingMessage {
     }
 
     private static GreetingMessage generateForOne(Employee employee) {
-        Greeting greeting = Greeting.greetingFor(employee);
+        Greeting greeting = Greeting.forBirthdayOf(employee);
         String recipient = employee.email();
         return new GreetingMessage(recipient, greeting);
     }
