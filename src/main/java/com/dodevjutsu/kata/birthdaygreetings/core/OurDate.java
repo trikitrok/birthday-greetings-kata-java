@@ -13,6 +13,10 @@ public class OurDate {
         date = new SimpleDateFormat("yyyy/MM/dd").parse(yyyy_slash_MM_slash_dd);
     }
 
+    public OurDate(Date date) {
+        this.date = date;
+    }
+
     public int getDay() {
         return getPartOfDate(GregorianCalendar.DAY_OF_MONTH);
     }

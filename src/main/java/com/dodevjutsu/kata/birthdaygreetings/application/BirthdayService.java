@@ -6,6 +6,7 @@ import com.dodevjutsu.kata.birthdaygreetings.infrastructure.greetings_senders.by
 import com.dodevjutsu.kata.birthdaygreetings.infrastructure.greetings_senders.by_email.EmailSender;
 import com.dodevjutsu.kata.birthdaygreetings.infrastructure.repositories.FileEmployeeRepository;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class BirthdayService {
@@ -40,7 +41,11 @@ public class BirthdayService {
             new EmailGreetingsSender(new EmailConfiguration("sender@here.com", "localhost", 25), new EmailSender())
         );
         try {
-            service.sendGreetings(new OurDate("2008/10/08"));
+            service.sendGreetings(
+                new OurDate(
+                    new SimpleDateFormat("yyyy/MM/dd").parse("2008/10/08")
+                )
+            );
         } catch (Exception e) {
             e.printStackTrace();
         }
