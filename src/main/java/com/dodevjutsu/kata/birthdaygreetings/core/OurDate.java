@@ -1,17 +1,11 @@
 package com.dodevjutsu.kata.birthdaygreetings.core;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class OurDate {
 
     private Date date;
-
-    public OurDate(String yyyy_slash_MM_slash_dd) throws ParseException {
-        date = new SimpleDateFormat("yyyy/MM/dd").parse(yyyy_slash_MM_slash_dd);
-    }
 
     public OurDate(Date date) {
         this.date = date;
@@ -27,7 +21,7 @@ public class OurDate {
 
     public boolean isSameDay(OurDate anotherDate) {
         return anotherDate.getDay() == this.getDay()
-                && anotherDate.getMonth() == this.getMonth();
+            && anotherDate.getMonth() == this.getMonth();
     }
 
     @Override
