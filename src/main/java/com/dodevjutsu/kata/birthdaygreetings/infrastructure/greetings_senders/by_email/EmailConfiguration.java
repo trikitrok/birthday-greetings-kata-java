@@ -11,15 +11,15 @@ public class EmailConfiguration {
         this.smtpPort = smtpPort;
     }
 
-    public int smtpPort() {
+    int smtpPort() {
         return smtpPort;
     }
 
-    public String smtpHost() {
+    String smtpHost() {
         return smtpHost;
     }
 
-    public String from() {
+    String from() {
         return from;
     }
 }
