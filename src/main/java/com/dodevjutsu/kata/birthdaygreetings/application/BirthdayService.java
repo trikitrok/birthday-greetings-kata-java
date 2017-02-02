@@ -8,8 +8,6 @@ import com.dodevjutsu.kata.birthdaygreetings.infrastructure.repositories.FileEmp
 
 import java.util.List;
 
-import static java.util.stream.Collectors.*;
-
 public class BirthdayService {
 
     private EmployeeRepository employeeRepository;
@@ -25,7 +23,7 @@ public class BirthdayService {
     }
 
     private List<GreetingMessage> greetingMessagesFor(List<Employee> employees) {
-        return employees.stream().map(GreetingMessage::generateFor).collect(toList());
+        return GreetingMessage.generateFor(employees);
     }
 
     private void send(List<GreetingMessage> greetingMessages) {

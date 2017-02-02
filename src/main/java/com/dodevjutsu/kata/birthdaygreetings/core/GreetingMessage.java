@@ -1,5 +1,9 @@
 package com.dodevjutsu.kata.birthdaygreetings.core;
 
+import java.util.List;
+
+import static java.util.stream.Collectors.toList;
+
 public class GreetingMessage {
 
     private final String to;
@@ -10,7 +14,11 @@ public class GreetingMessage {
         this.greeting = greeting;
     }
 
-    public static GreetingMessage generateFor(Employee employee) {
+    public static List<GreetingMessage> generateFor(List<Employee> employees) {
+        return employees.stream().map(GreetingMessage::generateForOne).collect(toList());
+    }
+
+    private static GreetingMessage generateForOne(Employee employee) {
         Greeting greeting = Greeting.greetingFor(employee);
         String recipient = employee.email();
         return new GreetingMessage(recipient, greeting);
