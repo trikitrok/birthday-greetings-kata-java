@@ -1,6 +1,7 @@
 package com.dodevjutsu.kata.birthdaygreetings.test;
 
 import com.dodevjutsu.kata.birthdaygreetings.application.BirthdayService;
+import com.dodevjutsu.kata.birthdaygreetings.core.OurDate;
 import com.dodevjutsu.kata.birthdaygreetings.infrastructure.greetings_senders.by_email.EmailConfiguration;
 import com.dodevjutsu.kata.birthdaygreetings.infrastructure.greetings_senders.by_email.EmailGreetingsSender;
 import com.dodevjutsu.kata.birthdaygreetings.infrastructure.greetings_senders.by_email.EmailSender;
@@ -42,8 +43,10 @@ public class AcceptanceTest {
     }
 
     @Test
-    public void baseScenario() throws Exception {
-        service.sendGreetings(new DateRepresentation("2008/10/08").toDate());
+    public void sends_emails_to_employees_having_birthday_today() throws Exception {
+        OurDate today = new DateRepresentation("2008/10/08").toDate();
+
+        service.sendGreetings(today);
 
         assertEquals("message not sent?", 1, messagesSent.size());
         Message message = messagesSent.get(0);
@@ -54,9 +57,11 @@ public class AcceptanceTest {
     }
 
     @Test
-    public void willNotSendEmailsWhenNobodysBirthday() throws Exception {
+    public void sends_no_email_when_it_is_nobodys_birthday() throws Exception {
+        OurDate today = new DateRepresentation("2008/01/01").toDate();
+
         service.sendGreetings(
-            new DateRepresentation("2008/01/01").toDate()
+            today
         );
 
         assertTrue("what? messages?", messagesSent.isEmpty());
